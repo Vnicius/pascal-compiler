@@ -43,6 +43,30 @@ class LexicalAnalyzer:
                             else:
                                 break
                         break
+                    elif program[i] == "i":
+                        token += program[i]
+                        i += 1
+                        if program[i] in "+-":
+                            token += program[i]
+                            i+=1
+                            if program[i].isdigit():
+                                token += program[i]
+                                i+=1
+                                lex = "Número Complexo"
+                                while i < tam-1:
+                                    if program[i].isdigit():
+                                        token += program[i]
+                                        i+=1
+                                    else:
+                                        break
+                            else:
+                                token = token[:-2]
+                                i -= 2
+                                break
+                        else:
+                            token = token[:-1]
+                            i -= 1
+                            break
                     else:
                         break
 
@@ -108,10 +132,25 @@ class LexicalAnalyzer:
                 i+=1
                 lex = "Operador Aditivo"
 
-            elif program[i] in "*/":    #Verificar se são os operadores multiplicativos
+            elif program[i] in "*":    #Verificar se são os operadores multiplicativos
                 token = program[i]
                 i+=1
                 lex = "Operador Multiplicativo"
+
+            elif program[i] is "/":
+                toke = program[i]
+                i+=1
+                lex = "Operador Multiplicativo"
+
+                if program[i] is "/":
+                    i+=1
+                    while i < tam-1:
+                        if program[i] is "\n":
+                            i+=1
+                            line_count += 1
+                            break
+                        i+=1
+                    continue
 
             elif program[i] is "{":     #Verificar se é início de comentário
                 ln = line_count

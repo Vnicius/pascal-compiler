@@ -1,4 +1,9 @@
 program teste; {programa exemplo}
+//asdasda
+23i+23
+34i-12
+23i
+23i23
 var
 	valor1: integer;
 	valor2: real;
